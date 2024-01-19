@@ -1,16 +1,27 @@
-import { prisma } from "~/db.server";
-import type { Post } from "@prisma/client";
+import knex from "../../knexfile";
+
+interface Post {
+  title: string;
+  slug: string;
+  markdown: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export async function getPosts(): Promise<Array<Post>> {
-  return prisma.post.findMany();
+  return knex<Post>('Post').select();
 }
 
 export async function getPost(slug: string) {
-  return prisma.post.findUnique({ where: { slug } });
+  return knex<Post>("Post").select("*").where({ slug }).first();
 }
 
 export function createPost(
   post: Pick<Post, "slug" | "title" | "markdown">
 ) {
-  return prisma.post.create({ data: post });
+  return knex<Post>("Post").insert({
+    ...post, 
+    createdAt: new Date(), 
+    updatedAt: new Date()
+  });
 }
