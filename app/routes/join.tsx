@@ -44,6 +44,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     );
   }
 
+  //console.log("checking if user exists");
   const existingUser = await getUserByEmail(email);
   if (existingUser) {
     return json(
@@ -56,9 +57,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       { status: 400 },
     );
   }
-
+  //console.log("creating user");
   const user = await createUser(email, password);
 
+  //console.log("creating session");
   return createUserSession({
     redirectTo,
     remember: false,

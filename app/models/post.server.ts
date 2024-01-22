@@ -1,6 +1,6 @@
-import knex from "../../knexfile";
+import db from "../../knex/db";
 
-interface Post {
+export interface Post {
   title: string;
   slug: string;
   markdown: string;
@@ -9,19 +9,29 @@ interface Post {
 };
 
 export async function getPosts(): Promise<Array<Post>> {
-  return knex<Post>('Post').select();
+  return db<Post>('Post').select();
 }
 
 export async function getPost(slug: string) {
-  return knex<Post>("Post").select("*").where({ slug }).first();
+  return db<Post>("Post").select("*").where({ slug }).first();
 }
 
 export function createPost(
   post: Pick<Post, "slug" | "title" | "markdown">
 ) {
-  return knex<Post>("Post").insert({
-    ...post, 
-    createdAt: new Date(), 
+  return db<Post>("Post").insert({
+    ...post,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+}
+
+export function updatePost(
+  post: Pick<Post, "slug" | "title" | "markdown">
+) {
+  return db<Post>("Post").where({ slug: post.slug }).update({
+    ...post,
+    createdAt: new Date(),
     updatedAt: new Date()
   });
 }
