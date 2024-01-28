@@ -4,8 +4,7 @@ import invariant from "tiny-invariant";
 import type { User } from "~/models/user.server";
 import { getUserById } from "~/models/user.server";
 
-const secret = process.env.SESSION_SECRET || "338b653495af7a67b2336e22586a8df9";
-console.log("SESSION_SECRET: ", secret);
+const secret = process.env.SESSION_SECRET;
 invariant(secret, "SESSION_SECRET must be set");
 
 export const sessionStorage = createCookieSessionStorage({

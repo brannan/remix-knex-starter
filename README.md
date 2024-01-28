@@ -68,6 +68,11 @@ users, logging in and out, and creating and deleting notes.
 
 ## Deployment
 
+Test run with: 
+```
+HOST=127.0.0.1 PORT=3333 SESSION_SECRET=secret npx remix-serve build/index.js
+```
+
 This Remix Stack comes with two GitHub Actions that handle automatically
 deploying your app to production and staging environments.
 
