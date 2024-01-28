@@ -13,26 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/projects/other/remix/indie-stack/app/routes/posts._index.tsx
-badd +4 ~/projects/other/remix/indie-stack/app/root.tsx
-badd +2 ~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx
+badd +1 ~/projects/other/remix/indie-stack/app/root.tsx
+badd +30 ~/projects/other/remix/indie-stack/app/routes/_index.tsx
+badd +3 app/routes/sass/Index.module.scss
 argglobal
 %argdel
-edit ~/projects/other/remix/indie-stack/app/routes/posts._index.tsx
+edit ~/projects/other/remix/indie-stack/app/routes/_index.tsx
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -54,85 +46,44 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-10
+8
 normal! zo
-13
-normal! zo
-14
-normal! zo
-let s:l = 26 - ((25 * winheight(0) + 21) / 42)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 26
-normal! 02|
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/projects/other/remix/indie-stack/app/root.tsx", ":p")) | buffer ~/projects/other/remix/indie-stack/app/root.tsx | else | edit ~/projects/other/remix/indie-stack/app/root.tsx | endif
-if &buftype ==# 'terminal'
-  silent file ~/projects/other/remix/indie-stack/app/root.tsx
-endif
-balt ~/projects/other/remix/indie-stack/app/routes/posts._index.tsx
-setlocal fdm=expr
-setlocal fde=v:lua.require'lazyvim.util'.ui.foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 4 - ((2 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 4
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx", ":p")) | buffer ~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx | else | edit ~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx | endif
-if &buftype ==# 'terminal'
-  silent file ~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx
-endif
-balt ~/projects/other/remix/indie-stack/app/root.tsx
-setlocal fdm=expr
-setlocal fde=v:lua.require'lazyvim.util'.ui.foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
 11
 normal! zo
-let s:l = 16 - ((15 * winheight(0) + 20) / 41)
+let s:l = 45 - ((44 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 02|
+keepjumps 45
+normal! 01|
 wincmd w
 argglobal
-enew | setl bt=help
-help copilot-cmp-lazy@en
-balt ~/projects/other/remix/indie-stack/app/routes/posts.admin.tsx
-setlocal fdm=manual
+if bufexists(fnamemodify("app/routes/sass/Index.module.scss", ":p")) | buffer app/routes/sass/Index.module.scss | else | edit app/routes/sass/Index.module.scss | endif
+if &buftype ==# 'terminal'
+  silent file app/routes/sass/Index.module.scss
+endif
+balt ~/projects/other/remix/indie-stack/app/routes/_index.tsx
+setlocal fdm=expr
 setlocal fde=v:lua.require'lazyvim.util'.ui.foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 28 - ((27 * winheight(0) + 21) / 42)
+setlocal fen
+let s:l = 3 - ((2 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 28
-normal! 0
+keepjumps 3
+let s:c = 21 - ((14 * winwidth(0) + 45) / 90)
+if s:c > 0
+  exe 'normal! ' . s:c . '|zs' . 21 . '|'
+else
+  normal! 021|
+endif
 wincmd w
-4wincmd w
+2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

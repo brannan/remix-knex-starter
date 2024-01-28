@@ -4,7 +4,9 @@ import invariant from "tiny-invariant";
 import type { User } from "~/models/user.server";
 import { getUserById } from "~/models/user.server";
 
-invariant(process.env.SESSION_SECRET, "SESSION_SECRET must be set");
+const secret = process.env.SESSION_SECRET || "338b653495af7a67b2336e22586a8df9";
+console.log("SESSION_SECRET: ", secret);
+invariant(secret, "SESSION_SECRET must be set");
 
 export const sessionStorage = createCookieSessionStorage({
   cookie: {
@@ -12,7 +14,7 @@ export const sessionStorage = createCookieSessionStorage({
     httpOnly: true,
     path: "/",
     sameSite: "lax",
-    secrets: [process.env.SESSION_SECRET],
+    secrets: [secret],
     secure: process.env.NODE_ENV === "production",
   },
 });
@@ -27,6 +29,7 @@ export async function getSession(request: Request) {
 export async function getUserId(
   request: Request,
 ): Promise<User["id"] | undefined> {
+  // console.log("getUserID: ", request);
   const session = await getSession(request);
   const userId = session.get(USER_SESSION_KEY);
   return userId;
@@ -34,6 +37,7 @@ export async function getUserId(
 
 export async function getUser(request: Request) {
   try {
+    // console.log("getUser: ", request);
     const userId = await getUserId(request);
     if (userId === undefined) return null;
     

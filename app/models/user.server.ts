@@ -1,4 +1,3 @@
-import { c } from "vitest/dist/reporters-5f784f42"
 import db from "../../knex/db";
 import bcrypt from "bcryptjs";
 

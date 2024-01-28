@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [{ title: "Remix Notes" }];
 export default function Index() {
   const user = useOptionalUser();
   return (
-    <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
+    <main id="Index" className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
@@ -30,7 +30,7 @@ export default function Index() {
                 Check the README.md file for instructions on how to get this
                 project deployed.
               </p>
-              <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+              <div id="Login" className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link
                     to="/notes"
@@ -88,9 +88,9 @@ export default function Index() {
                 href: "https://sqlite.org",
               },
               {
-                src: "https://user-images.githubusercontent.com/1500684/157764484-ad64a21a-d7fb-47e3-8669-ec046da20c1f.svg",
-                alt: "Prisma",
-                href: "https://prisma.io",
+                src: "https://knexjs.org/knex-logo.png",
+                alt: "Knex",
+                href: "https://knexjs.org",
               },
               {
                 src: "https://user-images.githubusercontent.com/1500684/157764276-a516a239-e377-4a20-b44a-0ac7b65c8c14.svg",
