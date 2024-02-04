@@ -1,0 +1,13 @@
+.hero_container {
+  position: relative;
+}
+
+.hero_overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+}
+
+/*# sourceMappingURL=Index.module.css.map */

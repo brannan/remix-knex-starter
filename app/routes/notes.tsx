@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { getNoteListItems } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
-import styles from "~/styles/routes/NotesPage.module.css";
+import styles from "~/styles/app/routes/NotesPage.module.css";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await requireUserId(request);

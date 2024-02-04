@@ -12,7 +12,7 @@ import {
 import styles from "./styles/root.module.css";
 
 import { getUser } from "~/session.server";
-import stylesheet from "~/tailwind.css";
+import stylesheet from "~/styles/index.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
